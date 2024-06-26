@@ -7,13 +7,18 @@ function adicionar(){
     let preco = document.getElementById('produto').value.split('R$')[1].trim();
 
     //adicionar produto no carrinho
-    let produtoNoCarrinho = document.createElement('section');
-    produtoNoCarrinho.classList.add('carrinho__produtos__produto');
-    produtoNoCarrinho.innerHTML = `<span class="texto-azul">${quantidade}x</span> ${produto} <span class="texto-azul">R$${preco * quantidade}</span>`
-    
-    let carrinhoDeProdutos = document.getElementById('lista-produtos');
-    carrinhoDeProdutos.appendChild(produtoNoCarrinho);
+    if(quantidade != 0 && quantidade != null && !isNaN(quantidade)){
+        let produtoNoCarrinho = document.createElement('section');
+        produtoNoCarrinho.classList.add('carrinho__produtos__produto');
+        produtoNoCarrinho.innerHTML = `<span class="texto-azul">${quantidade}x</span> ${produto} <span class="texto-azul">R$${preco * quantidade}</span>`
+        let carrinhoDeProdutos = document.getElementById('lista-produtos');
+        carrinhoDeProdutos.appendChild(produtoNoCarrinho);
+    }
+    else{
+        alert('A quantidade não pode ser 0 e não pode estar vazia. Verifique!');
+    }
 
+    //limpar campo de quantidade depois que o produto é adicionado ao carrinho
     document.getElementById('quantidade').value = '';
 
     //atualizar o valor total dos produtos no carrinho de compras
